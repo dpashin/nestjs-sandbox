@@ -1,5 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { LoanGraphicDto } from './dto/loan-graphic.dto';
+import { InvestorGraphicDto } from './dto/investor-graphic.dto';
+import { Investment } from '../entities/investment.entity';
 
 export interface LoanGraphicItem {
   paymentNumber: number;
@@ -8,8 +11,59 @@ export interface LoanGraphicItem {
   interest: number;
 }
 
+export interface InvestorGraphicItem {
+  paymentNumber: number;
+  investorId: string;
+  paymentDate: string;
+  principal: number;
+  percentLoan: number;
+  percentStrategyRate: number;
+}
+
 @Injectable()
 export class LoanService {
+  constructor(
+    @InjectModel(Investment)
+    private investmentModel: typeof Investment,
+  ) {}
+
+  async calculateInvestorGraphic(
+    params: InvestorGraphicDto,
+  ): Promise<InvestorGraphicItem[]> {
+    const { loanId, loanDate, termDays, paymentPeriodDays } = params;
+
+    const numberOfPayments = Math.floor(termDays / paymentPeriodDays);
+
+    const investors = await this.investmentModel.findAll({
+      where: { loanId },
+    });
+
+    if (investors.length === 0) {
+      throw new NotFoundException(`No investments found for loanId: ${loanId}`);
+    }
+
+    const result: InvestorGraphicItem[] = [];
+
+    for (let i = 0; i < numberOfPayments; i++) {
+      const paymentDate = new Date(loanDate);
+      paymentDate.setDate(paymentDate.getDate() + (i + 1) * paymentPeriodDays);
+      const formattedDate = paymentDate.toISOString().split('T')[0];
+
+      for (const investor of investors) {
+        result.push({
+          paymentNumber: i + 1,
+          investorId: investor.investorId,
+          paymentDate: formattedDate,
+          principal: 0,
+          percentLoan: 0,
+          percentStrategyRate: 0,
+        });
+      }
+    }
+
+    return result;
+  }
+
   calculateLoanGraphic(params: LoanGraphicDto): LoanGraphicItem[] {
     const {
       loanDate,
