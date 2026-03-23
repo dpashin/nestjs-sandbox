@@ -30,7 +30,26 @@ GET http://localhost:3000/loan-graphic?loanDate=2026-03-16&principalAmount=50000
 
 GET http://localhost:3000/investor-graphic?loanId=badb5ad9-544d-4dee-8d01-61da46bf8570&loanDate=2026-03-16&principalAmount=500000&annualRate=17&termDays=365&paymentPeriodDays=30
 
-Пока получаем пустой ответ (реализовать не успел).
+Пока получаем частично заполненный ответ (реализовать не успел).
+
+```
+[
+  {
+    "paymentNumber": 1,
+    "paymentDate": "2026-04-15",
+    "principal": 0,
+    "percentLoan": 0,
+    "percentStrategyRate": null
+  },
+  {
+    "paymentNumber": 1,
+    "paymentDate": "2026-04-15",
+    "principal": 0,
+    "percentLoan": 0,
+    "percentStrategyRate": null
+  },
+  ...
+```
 
 
 ## Как загрузить в базу данные из файла
