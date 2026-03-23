@@ -11,26 +11,30 @@ export interface LoanGraphicItem {
 @Injectable()
 export class LoanService {
   calculateLoanGraphic(params: LoanGraphicDto): LoanGraphicItem[] {
-    const { loanDate, principalAmount, annualRate, termDays, paymentPeriodDays } = params;
+    const {
+      loanDate,
+      principalAmount,
+      annualRate,
+      termDays,
+      paymentPeriodDays,
+    } = params;
 
     // Количество платежных периодов
-    const numberOfPayments = Math.ceil(termDays / paymentPeriodDays);
+    const numberOfPayments = Math.floor(termDays / paymentPeriodDays);
 
     // Округление вниз до 2 знаков
     const floorTo2Decimals = (value: number): number => {
       return Math.floor(value * 100) / 100;
     };
 
-    // Расчет даты первого платежа: дата займа + 1 день
-    const firstPaymentDate = new Date(loanDate);
-    firstPaymentDate.setDate(firstPaymentDate.getDate() + 1);
-
     const result: LoanGraphicItem[] = [];
 
     for (let i = 0; i < numberOfPayments; i++) {
-      // Расчет даты платежа
-      const paymentDate = new Date(firstPaymentDate);
-      paymentDate.setDate(firstPaymentDate.getDate() + i * paymentPeriodDays);
+      // Расчет даты платежа: loanDate + (i+1) * paymentPeriodDays - 1 день
+      const paymentDate = new Date(loanDate);
+      paymentDate.setDate(
+        paymentDate.getDate() + (i + 1) * paymentPeriodDays - 1,
+      );
 
       // Форматирование даты в YYYY-MM-DD
       const formattedDate = paymentDate.toISOString().split('T')[0];
