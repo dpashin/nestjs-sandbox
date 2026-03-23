@@ -50,13 +50,14 @@ export class LoanService {
       const formattedDate = paymentDate.toISOString().split('T')[0];
 
       for (const investor of investors) {
+        const strategyRatePercent = Number(investor.investorStrategyRate) * 100;
         result.push({
           paymentNumber: i + 1,
           investorId: investor.investorId,
           paymentDate: formattedDate,
           principal: 0,
           percentLoan: 0,
-          percentStrategyRate: 0,
+          percentStrategyRate: Math.round(strategyRatePercent * 100) / 100,
         });
       }
     }

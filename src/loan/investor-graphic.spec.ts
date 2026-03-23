@@ -55,6 +55,8 @@ describe('LoanService - calculateInvestorGraphic', () => {
     const result = await loanService.calculateInvestorGraphic(params);
 
     expect(result).toHaveLength(24);
+    expect(result[0].percentStrategyRate).toBe(14);
+    expect(result[1].percentStrategyRate).toBe(17);
   });
 
   it('должен вернуть корректные данные для каждого периода и инвестора', async () => {
@@ -76,7 +78,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-04-15',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 1,
@@ -84,7 +86,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-04-15',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 2,
@@ -92,7 +94,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-05-15',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 2,
@@ -100,7 +102,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-05-15',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 3,
@@ -108,7 +110,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-06-14',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 3,
@@ -116,7 +118,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-06-14',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 4,
@@ -124,7 +126,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-07-14',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 4,
@@ -132,7 +134,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-07-14',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 5,
@@ -140,7 +142,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-08-13',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 5,
@@ -148,7 +150,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-08-13',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 6,
@@ -156,7 +158,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-09-12',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 6,
@@ -164,7 +166,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-09-12',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 7,
@@ -172,7 +174,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-10-12',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 7,
@@ -180,7 +182,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-10-12',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 8,
@@ -188,7 +190,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-11-11',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 8,
@@ -196,7 +198,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-11-11',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 9,
@@ -204,7 +206,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-12-11',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 9,
@@ -212,7 +214,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2026-12-11',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 10,
@@ -220,7 +222,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2027-01-10',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 10,
@@ -228,7 +230,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2027-01-10',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 11,
@@ -236,7 +238,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2027-02-09',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 11,
@@ -244,7 +246,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2027-02-09',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
       {
         paymentNumber: 12,
@@ -252,7 +254,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2027-03-11',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 14,
       },
       {
         paymentNumber: 12,
@@ -260,7 +262,7 @@ describe('LoanService - calculateInvestorGraphic', () => {
         paymentDate: '2027-03-11',
         principal: 0,
         percentLoan: 0,
-        percentStrategyRate: 0,
+        percentStrategyRate: 17,
       },
     ];
 
