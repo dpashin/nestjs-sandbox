@@ -1,4 +1,4 @@
-# Запуск 
+ущ# Запуск 
 
 1. docker-compose up --build
 
@@ -105,7 +105,8 @@ $ npm run test:cov
 - Материализация расчетов, веб должен доставить уже подготовленные данные, а не считать на лету
 - нелогичное апи - второй запрос использует базу, первый берет входные параметры
 - смена state confirmed => "график построен"
-- fix ошибки при импорте
+- пересмотреть нормализацию базы: ключи, индексы, state
+- fix варнинга при импорте
     ```
     (sequelize) Warning: Model "Investment" is declaring public class fields for attribute(s): "investorId", "investmentAmount", "state", "loanId", "investorStrategyRate".
     These class fields are shadowing Sequelize's attribute getters & setters.
