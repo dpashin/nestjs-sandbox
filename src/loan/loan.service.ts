@@ -32,9 +32,7 @@ export class LoanService {
     for (let i = 0; i < numberOfPayments; i++) {
       // Расчет даты платежа: loanDate + (i+1) * paymentPeriodDays - 1 день
       const paymentDate = new Date(loanDate);
-      paymentDate.setDate(
-        paymentDate.getDate() + (i + 1) * paymentPeriodDays - 1,
-      );
+      paymentDate.setDate(paymentDate.getDate() + (i + 1) * paymentPeriodDays);
 
       // Форматирование даты в YYYY-MM-DD
       const formattedDate = paymentDate.toISOString().split('T')[0];

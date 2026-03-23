@@ -28,5 +28,20 @@ describe('LoanService', () => {
       expect(result[0].paymentNumber).toBe(1);
       expect(result[result.length - 1].paymentNumber).toBe(12);
     });
+
+    it('должен вернуть корректные даты платежей', () => {
+      const params = {
+        loanDate: '2026-03-16',
+        principalAmount: 500000,
+        annualRate: 17,
+        termDays: 365,
+        paymentPeriodDays: 30,
+      };
+
+      const result = loanService.calculateLoanGraphic(params);
+
+      expect(result[0].paymentDate).toBe('2026-04-15');
+      expect(result[result.length - 1].paymentDate).toBe('2027-03-11');
+    });
   });
 });
