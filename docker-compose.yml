@@ -13,6 +13,8 @@ services:
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=postgres
       - DATABASE_NAME=postgres
+    volumes:
+      - ./examples:/app/examples
     depends_on:
       - postgres
     restart: unless-stopped

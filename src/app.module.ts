@@ -3,6 +3,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoanModule } from './loan/loan.module';
+import { Investment } from './entities/investment.entity';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { LoanModule } from './loan/loan.module';
       username: process.env.DATABASE_USER || 'postgres',
       password: process.env.DATABASE_PASSWORD || 'postgres',
       database: process.env.DATABASE_NAME || 'postgres',
+      models: [Investment],
       autoLoadModels: true,
       synchronize: true,
     }),

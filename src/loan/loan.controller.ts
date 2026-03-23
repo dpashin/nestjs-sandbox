@@ -1,4 +1,10 @@
-import { Controller, Get, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { LoanService } from './loan.service';
 import { LoanGraphicDto } from './dto/loan-graphic.dto';
 
