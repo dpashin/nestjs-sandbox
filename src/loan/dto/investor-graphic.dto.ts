@@ -1,4 +1,12 @@
-import { IsString, IsNumber, IsDateString } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsDateString,
+  IsInt,
+  Min,
+  Max,
+} from 'class-validator';
+import { Type } from 'class-transformer';
 
 /**
  * DTO для расчета графика выплат инвесторам
@@ -13,18 +21,27 @@ export class InvestorGraphicDto {
   loanDate: string;
 
   /** Сумма основного долга */
-  @IsNumber()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
   principalAmount: number;
 
   /** Годовая процентная ставка (%) */
-  @IsNumber()
+  @Type(() => Number)
+  @IsInt()
+  @Min(0)
+  @Max(100)
   annualRate: number;
 
   /** Срок займа в днях */
-  @IsNumber()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
   termDays: number;
 
   /** Период платежа в днях */
-  @IsNumber()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
   paymentPeriodDays: number;
 }
