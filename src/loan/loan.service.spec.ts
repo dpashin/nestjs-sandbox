@@ -60,5 +60,22 @@ describe('LoanService', () => {
       const totalPrincipal = result.reduce((sum, p) => sum + p.principal, 0);
       expect(totalPrincipal).toBeCloseTo(500000);
     });
+
+    it('должен вернуть корректный interest для каждого периода', () => {
+      const params = {
+        loanDate: '2026-03-16',
+        principalAmount: 500000,
+        annualRate: 17,
+        termDays: 365,
+        paymentPeriodDays: 30,
+      };
+
+      const result = loanService.calculateLoanGraphic(params);
+
+      expect(result[0].interest).toBe(6986.3);
+      expect(result[1].interest).toBe(6986.3);
+      expect(result[2].interest).toBe(6986.3);
+      expect(result[11].interest).toBe(6986.3);
+    });
   });
 });

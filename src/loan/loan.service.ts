@@ -49,11 +49,17 @@ export class LoanService {
       const principal =
         i === numberOfPayments - 1 ? lastPrincipal : basePrincipal;
 
+      const daysInPeriod = paymentPeriodDays;
+      const dailyRate = annualRate / 100 / 365;
+      const interest = roundTo2Decimals(
+        principalAmount * dailyRate * daysInPeriod,
+      );
+
       result.push({
         paymentNumber: i + 1,
         paymentDate: formattedDate,
         principal: principal,
-        interest: floorTo2Decimals(0),
+        interest: interest,
       });
     }
 
