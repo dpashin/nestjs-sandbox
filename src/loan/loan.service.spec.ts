@@ -43,5 +43,22 @@ describe('LoanService', () => {
       expect(result[0].paymentDate).toBe('2026-04-15');
       expect(result[result.length - 1].paymentDate).toBe('2027-03-11');
     });
+
+    it('должен вернуть равные суммы principal с компенсацией в последнем платеже', () => {
+      const params = {
+        loanDate: '2026-03-16',
+        principalAmount: 500000,
+        annualRate: 17,
+        termDays: 365,
+        paymentPeriodDays: 30,
+      };
+
+      const result = loanService.calculateLoanGraphic(params);
+
+      expect(result[0].principal).toBe(41666.66);
+      expect(result[11].principal).toBe(41666.74);
+      const totalPrincipal = result.reduce((sum, p) => sum + p.principal, 0);
+      expect(totalPrincipal).toBeCloseTo(500000);
+    });
   });
 });

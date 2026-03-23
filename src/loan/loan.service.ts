@@ -27,6 +27,15 @@ export class LoanService {
       return Math.floor(value * 100) / 100;
     };
 
+    // Расчет principal: равными частями с компенсацией в последнем платеже
+    const basePrincipal = floorTo2Decimals(principalAmount / numberOfPayments);
+    const roundTo2Decimals = (value: number): number => {
+      return Math.round(value * 100) / 100;
+    };
+    const lastPrincipal = roundTo2Decimals(
+      principalAmount - basePrincipal * (numberOfPayments - 1),
+    );
+
     const result: LoanGraphicItem[] = [];
 
     for (let i = 0; i < numberOfPayments; i++) {
@@ -37,11 +46,13 @@ export class LoanService {
       // Форматирование даты в YYYY-MM-DD
       const formattedDate = paymentDate.toISOString().split('T')[0];
 
-      // Заглушки для principal и interest (будут рассчитаны позже)
+      const principal =
+        i === numberOfPayments - 1 ? lastPrincipal : basePrincipal;
+
       result.push({
         paymentNumber: i + 1,
         paymentDate: formattedDate,
-        principal: floorTo2Decimals(0),
+        principal: principal,
         interest: floorTo2Decimals(0),
       });
     }
